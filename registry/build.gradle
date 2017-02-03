@@ -1,0 +1,23 @@
+plugins {
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+	id 'maven'
+}
+
+group = 'com.piggymetrics'
+version = '1.0.0-SNAPSHOT'
+description = """registry"""
+archivesBaseName = 'registry'
+
+
+dependencies {
+	compile 'org.springframework.cloud:spring-cloud-starter-config:1.2.2.RELEASE'
+	compile 'org.springframework.cloud:spring-cloud-starter-eureka-server:1.2.5.RELEASE'
+	testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.1.RELEASE'
+}
+
+
+configurations {
+	published
+}

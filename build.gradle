@@ -1,0 +1,48 @@
+plugins {
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+	id 'com.github.ben-manes.versions' version '0.13.0'
+}
+
+group = 'com.piggymetrics'
+version = '1.0-SNAPSHOT'
+description = """piggymetrics"""
+archivesBaseName = 'piggymetrics'
+
+
+
+
+subprojects {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	
+	tasks.withType(JavaCompile) {
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
+		options.encoding = "UTF-8"
+	}
+	
+	repositories {
+		mavenLocal()
+		maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+		//mavenCentral()
+		jcenter()
+	}
+	
+	idea{
+		project {
+			languageLevel = '1.8'
+			ipr {
+				withXml { provider ->
+					provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
+				}
+			}
+		}
+		module {
+			inheritOutputDirs = false
+			outputDir = file("$buildDir/classes/main/")
+			testOutputDir = file("$buildDir/classes/test/")
+		}
+	}
+	}

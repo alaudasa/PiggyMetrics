@@ -1,0 +1,1 @@
+include ':config', ':monitoring', ':registry', ':gateway', ':auth-service', ':account-service', ':statistics-service', ':notification-service'

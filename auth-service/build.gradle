@@ -1,0 +1,30 @@
+plugins {
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+	id 'maven'
+}
+
+group = 'com.piggymetrics'
+version = '1.0.0-SNAPSHOT'
+description = """auth-service"""
+archivesBaseName = 'auth-service'
+
+
+dependencies {
+	compile 'org.springframework.cloud:spring-cloud-starter:1.1.7.RELEASE'
+	compile 'org.springframework.cloud:spring-cloud-starter-config:1.2.2.RELEASE'
+	compile 'org.springframework.cloud:spring-cloud-starter-eureka:1.2.5.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-web:1.5.1.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-security:1.5.1.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-data-mongodb:1.5.1.RELEASE'
+	compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.12.RELEASE'
+	testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.1.RELEASE'
+	testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.50.5'
+	testCompile 'com.jayway.jsonpath:json-path:2.2.0'
+}
+
+
+configurations {
+	published
+}
