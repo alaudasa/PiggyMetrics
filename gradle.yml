@@ -5,16 +5,13 @@ props:
     embed-mongo: 1.50.5
     spring-cloud-starter: 1.1.7.RELEASE
     spring-cloud-config: 1.2.2.RELEASE
-    netflix-hystrix-stream: 1.2.5.RELEASE
-    starter-bus-amqp: 1.2.1.RELEASE
-    starter-eureka: 1.2.5.RELEASE
-    starter-eureka-server: 1.2.5.RELEASE
-    starter-feign: 1.2.5.RELEASE
-    starter-hystrix-dashboard: 1.2.5.RELEASE
     starter-oauth2: 1.1.3.RELEASE
     starter-stream-rabbit: 1.1.2.RELEASE
     starter-turbine-stream: 1.2.5.RELEASE
-    starter-zuul: 1.2.5.RELEASE
+
+    spring-cloud-netflix: 1.2.5.RELEASE
+    spring-cloud-bus: 1.2.1.RELEASE
+    spring-cloud-security: 1.1.3.RELEASE
     #maven-publish: nebula.maven-publish' version '4.9.1
     maven-publish: maven-publish
     bintray: com.jfrog.bintray' version '1.7.3
@@ -30,7 +27,7 @@ subProjects:
   config:
     version: ${version}
     description: config
-    plugins: [java,eclipse,idea,maven]
+    plugins: [java,eclipse,idea,maven,"org.springframework.boot' version '${plugin-boot}"]
     deps:
       - compile 'org.springframework.cloud:spring-cloud-config-server:${spring-cloud-config}'
       - compile 'org.springframework.boot:spring-boot-starter-security:${springboot}'
@@ -38,42 +35,42 @@ subProjects:
   monitoring:
     version: ${version}
     description: monitoring
-    plugins: [java,eclipse,idea,maven]
+    plugins: [java,eclipse,idea,maven,"org.springframework.boot' version '${plugin-boot}"]
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter-config:${spring-cloud-config}'
       - compile 'org.springframework.cloud:spring-cloud-starter-turbine-stream:${starter-turbine-stream}'
       - compile 'org.springframework.cloud:spring-cloud-starter-stream-rabbit:${starter-stream-rabbit}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:${starter-hystrix-dashboard}'
+      - compile 'org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:${spring-cloud-netflix}'
       - testCompile 'org.springframework.boot:spring-boot-starter-test:${springboot}'
   #-----------------------registry
   registry:
     version: ${version}
     description: registry
-    plugins: [java,eclipse,idea,maven]
+    plugins: [java,eclipse,idea,maven,"org.springframework.boot' version '${plugin-boot}"]
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter-config:${spring-cloud-config}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka-server:${starter-eureka-server}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server:${spring-cloud-netflix}'
       - testCompile 'org.springframework.boot:spring-boot-starter-test:${springboot}'
   #-----------------------gateway
   gateway:
     version: ${version}
     description: gateway
-    plugins: [java,eclipse,idea,maven]
+    plugins: [java,eclipse,idea,maven,"org.springframework.boot' version '${plugin-boot}"]
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter:${spring-cloud-starter}'
       - compile 'org.springframework.cloud:spring-cloud-starter-config:${spring-cloud-config}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-zuul:${starter-zuul}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka:${starter-eureka}'
+      - compile 'org.springframework.cloud:spring-cloud-starter-zuul:${spring-cloud-netflix}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client:${spring-cloud-netflix}'
       - testCompile 'org.springframework.boot:spring-boot-starter-test:${springboot}'
   #-----------------------auth-service
   auth-service:
     version: ${version}
     description: auth-service
-    plugins: [java,eclipse,idea,maven]
+    plugins: [java,eclipse,idea,maven,"org.springframework.boot' version '${plugin-boot}"]
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter:${spring-cloud-starter}'
       - compile 'org.springframework.cloud:spring-cloud-starter-config:${spring-cloud-config}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka:${starter-eureka}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client:${spring-cloud-netflix}'
       - compile 'org.springframework.boot:spring-boot-starter-web:${springboot}'
       - compile 'org.springframework.boot:spring-boot-starter-security:${springboot}'
       - compile 'org.springframework.boot:spring-boot-starter-data-mongodb:${springboot}'
@@ -85,16 +82,16 @@ subProjects:
   account-service:
     version: ${version}
     description: account-service
-    plugins: [java,eclipse,idea,maven]
+    plugins: [java,eclipse,idea,maven,"org.springframework.boot' version '${plugin-boot}"]
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter:${spring-cloud-starter}'
       - compile 'org.springframework.cloud:spring-cloud-starter-config:${spring-cloud-config}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka:${starter-eureka}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-feign:${starter-feign}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client:${spring-cloud-netflix}'
+      - compile 'org.springframework.cloud:spring-cloud-starter-feign:${spring-cloud-netflix}'
       - compile 'org.springframework.cloud:spring-cloud-starter-oauth2:${starter-oauth2}'
       - compile 'org.springframework.security.oauth:spring-security-oauth2:${security-oauth2}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp:${starter-bus-amqp}'
-      - compile 'org.springframework.cloud:spring-cloud-netflix-hystrix-stream:${netflix-hystrix-stream}'
+      - compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp:${spring-cloud-bus}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-hystrix-stream:${spring-cloud-netflix}'
       - compile 'org.springframework.boot:spring-boot-starter-web:${springboot}'
       - compile 'org.springframework.boot:spring-boot-starter-security:${springboot}'
       - compile 'org.springframework.boot:spring-boot-starter-data-mongodb:${springboot}'
@@ -106,16 +103,16 @@ subProjects:
   statistics-service:
     version: ${version}
     description: statistics-service
-    plugins: [java,eclipse,idea,maven]
+    plugins: [java,eclipse,idea,maven,"org.springframework.boot' version '${plugin-boot}"]
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter:${spring-cloud-starter}'
       - compile 'org.springframework.cloud:spring-cloud-starter-config:${spring-cloud-config}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka:${starter-eureka}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-feign:${starter-feign}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client:${spring-cloud-netflix}'
+      - compile 'org.springframework.cloud:spring-cloud-starter-feign:${spring-cloud-netflix}'
       - compile 'org.springframework.cloud:spring-cloud-starter-oauth2:${starter-oauth2}'
       - compile 'org.springframework.security.oauth:spring-security-oauth2:${security-oauth2}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp:${starter-bus-amqp}'
-      - compile 'org.springframework.cloud:spring-cloud-netflix-hystrix-stream:${netflix-hystrix-stream}'
+      - compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp:${spring-cloud-bus}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-hystrix-stream:${spring-cloud-netflix}'
       - compile 'org.springframework.boot:spring-boot-starter-web:${springboot}'
       - compile 'org.springframework.boot:spring-boot-starter-security:${springboot}'
       - compile 'org.springframework.boot:spring-boot-starter-data-mongodb:${springboot}'
@@ -128,16 +125,16 @@ subProjects:
   notification-service:
     version: ${version}
     description: notification-service
-    plugins: [java,eclipse,idea,maven]
+    plugins: [java,eclipse,idea,maven,"org.springframework.boot' version '${plugin-boot}"]
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter:${spring-cloud-starter}'
       - compile 'org.springframework.cloud:spring-cloud-starter-config:${spring-cloud-config}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka:${starter-eureka}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-feign:${starter-feign}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client:${spring-cloud-netflix}'
+      - compile 'org.springframework.cloud:spring-cloud-starter-feign:${spring-cloud-netflix}'
       - compile 'org.springframework.cloud:spring-cloud-starter-oauth2:${starter-oauth2}'
       - compile 'org.springframework.security.oauth:spring-security-oauth2:${security-oauth2}'
-      - compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp:${starter-bus-amqp}'
-      - compile 'org.springframework.cloud:spring-cloud-netflix-hystrix-stream:${netflix-hystrix-stream}'
+      - compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp:${spring-cloud-bus}'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-hystrix-stream:${spring-cloud-netflix}'
       - compile 'org.springframework.boot:spring-boot-starter-web:${springboot}'
       - compile 'org.springframework.boot:spring-boot-starter-security:${springboot}'
       - compile 'org.springframework.boot:spring-boot-starter-data-mongodb:${springboot}'

@@ -3,6 +3,7 @@ plugins {
 	id 'eclipse'
 	id 'idea'
 	id 'maven'
+	id 'org.springframework.boot' version '1.5.1.RELEASE'
 }
 
 group = 'com.piggymetrics'
@@ -14,7 +15,7 @@ archivesBaseName = 'auth-service'
 dependencies {
 	compile 'org.springframework.cloud:spring-cloud-starter:1.1.7.RELEASE'
 	compile 'org.springframework.cloud:spring-cloud-starter-config:1.2.2.RELEASE'
-	compile 'org.springframework.cloud:spring-cloud-starter-eureka:1.2.5.RELEASE'
+	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client:1.2.5.RELEASE'
 	compile 'org.springframework.boot:spring-boot-starter-web:1.5.1.RELEASE'
 	compile 'org.springframework.boot:spring-boot-starter-security:1.5.1.RELEASE'
 	compile 'org.springframework.boot:spring-boot-starter-data-mongodb:1.5.1.RELEASE'
